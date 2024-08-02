@@ -5,7 +5,7 @@ const fs = require('fs')
 const router = express.Router();
 
 const multer = require("multer");
-const { createEmail, getAllEmails, getEmailById, deleteEmail } = require('../controller.js/email');
+const { createEmail, getAllEmails, getEmailById, deleteEmail } = require('../controller/email');
 
 
 const multerStorageForAttachments = multer.diskStorage({

@@ -12,7 +12,10 @@ const createEmail = async(req,res)=>{
     :attachments=null
     
     try {
-        const email = await Email.create({recipientEmail,body,attachments,subject,time,recurrentInterval,isRecurrent});
+        console.log('date is',time);
+        const curr = new Date(time);
+        console.log('curr',curr);
+        const email = await Email.create({recipientEmail,body,attachments,subject,time:curr,recurrentInterval,isRecurrent});
         res.status(200).json({"isOK":true,message:"Email Scheduled"});
         const user = await User.findById(userId);
         await User.findByIdAndUpdate(userId,{$push:{scheduledEmails:email._id}});
@@ -30,7 +33,8 @@ const createEmail = async(req,res)=>{
             body:body,
             attachments:attachments 
           };
-          const job = schedule.scheduleJob(time, () => {
+          const job = schedule.scheduleJob(new Date(time), () => {
+            console.log('mail sent')
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
               console.error("Error sending email:", error);
