@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer')
 const Email = require('../models/email');
 const User = require('../models/user');
 const schedule = require('node-schedule');
+const mongoose = require('mongoose')
 const createEmail = async(req,res)=>{
     let {userId,recipientEmail,subject,body,time,isRecurrent,recurrentInterval} = req.body;
     let attachments;
@@ -95,7 +96,11 @@ const deleteEmail = async(req,res) =>{
     try{
         const id = req.params.id;
         const email = await Email.findByIdAndDelete(id);
-        res.status(200).json({isOK:true,message:"Email Deleted"});    
+        console.log(email.userId);
+        const user = await User.findByIdAndUpdate(email.userId,{$pull:{scheduledEmails:new mongoose.Types.ObjectId(id)}});
+
+        res.status(200).json({isOK:true,message:"Email Deleted"});
+
 }
 catch(e){
     res.status(500).json({isOK:false,message:e.message});

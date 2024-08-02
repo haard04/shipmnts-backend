@@ -9,6 +9,7 @@ const EmailSchema = new Schema({
   attachments: [
     { type: String, default: null },
   ],
+  userId:{ type: Schema.Types.ObjectId, ref: "users"},
   isRecurrent:{type:Boolean},
   recurrentInterval:{type:String},
   
