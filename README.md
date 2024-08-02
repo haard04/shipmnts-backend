@@ -1,7 +1,7 @@
 # shipmnts-backend
 This repo is created for the shipmnts web assesment - backend , email scheduling 
 
-[Hosted link]()
+[Hosted on Render](https://shipmnts-backend.onrender.com/)
 
 List of APIs:
 * User 
@@ -51,6 +51,5 @@ npm start
 ```
 
 ### Postman Collection added in file section
-### Doumentation URL :
-[Click here](https://documenter.getpostman.com/view/21423387/2sA3rwLDoY)
+### Doumentation URL :[Click here](https://documenter.getpostman.com/view/21423387/2sA3rwLDoY)
     
